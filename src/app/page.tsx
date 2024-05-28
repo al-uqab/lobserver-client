@@ -1,113 +1,196 @@
-import Image from "next/image";
+"use client";
+
+import { useState, ChangeEvent, FormEvent } from 'react';
+import axios from 'axios';
+
+interface FormData {
+  distance: number;
+  time: string;
+  runningType: string,
+  treadmill: boolean;
+  sex: string;
+  age: number;
+  weight: number;
+  speed: number;
+}
+
+const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export default function Home() {
+  const [formData, setFormData] = useState<FormData>({
+    distance: 0,
+    time: '',
+    runningType: 'outdoor',
+    treadmill: false,
+    sex: 'male',
+    age: 0,
+    weight: 0,
+    speed: 0
+  });
+
+  const [result, setResult] = useState<number | string | null>(null);
+  const [errors, setErrors] = useState<string[]>([]);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === 'checkbox' ? checked : (name === 'time' ? value : parseFloat(value))
+    }));
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setErrors([]);
+
+    // Validation
+    const validationErrors: string[] = [];
+    if (formData.distance <= 0 || isNaN(formData.distance)) {
+      validationErrors.push("distance must be a positive number");
+    }
+    if (formData.age <= 0 || formData.age > 120 || isNaN(formData.age)) {
+      validationErrors.push("age must be a number between 1 and 120");
+    }
+    if (formData.weight <= 0 || isNaN(formData.weight)) {
+      validationErrors.push("weight must be a positive number");
+    }
+    if (formData.speed <= 0 || isNaN(formData.speed)) {
+      validationErrors.push("speed must be a positive number");
+    }
+
+    if (validationErrors.length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    try {
+      const response = await axios.post(`${backendUrl}/runs`, formData);
+      setResult(response.data.caloriesBurned);
+    } catch (error) {
+      console.error('Error calculating calories:', error);
+      setResult('Error calculating calories');
+    }
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-blue-800 to-blue-900 text-white"> {/* Gradient blue background */}
+      <div className="max-w-md w-full rounded-lg shadow-md bg-white overflow-hidden">
+        <div className="px-6 py-8">
+          <h2 className="text-2xl font-semibold text-center text-blue-800 mb-4">Fitness Run Calculator</h2> {/* Dark blue heading */}
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <fieldset className="grid grid-cols-1 gap-4">
+              <legend className="sr-only">Form Fields</legend>
+              <div className="grid grid-cols-1 gap-2">
+                <label htmlFor="distance" className="text-sm font-medium text-gray-700">Distance (km)</label>
+                <input
+                    type="number"
+                    id="distance"
+                    name="distance"
+                    value={formData.distance}
+                    onChange={handleChange}
+                    required
+                    placeholder="Enter distance..."
+                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none input-field rounded-md border border-gray-300 py-2 px-3 text-gray-700 focus:outline-none focus:ring-none"
+                />
+              </div>
+              {/* Add tabs for running type */}
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                    type="button"
+                    onClick={() => setFormData({...formData, runningType: 'outdoor'})}
+                    className={`px-4 py-2 text-sm font-medium rounded-md focus:outline-none ${formData.runningType === 'outdoor' ? 'bg-yellow-600 text-white' : 'text-gray-700'}`}
+                >
+                  Outdoor
+                </button>
+                <button
+                    type="button"
+                    onClick={() => setFormData({...formData, runningType: 'treadmill'})}
+                    className={`px-4 py-2 text-sm font-medium rounded-md focus:outline-none ${formData.runningType === 'treadmill' ? 'bg-yellow-600 text-white' : 'text-gray-700'}`}
+                >
+                  Treadmill
+                </button>
+              </div>
+              {/* End of tabs */}
+              {/* Other form elements */}
+              <div className="grid grid-cols-1 gap-2">
+                <label htmlFor="sex" className="text-sm font-medium text-gray-700">Sex</label>
+                <select
+                    id="sex"
+                    name="sex"
+                    value={formData.sex}
+                    onChange={handleChange}
+                    className="input-field rounded-md border border-gray-300 py-2 px-3 text-gray-700 focus:outline-none focus:ring-none"
+                >
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="time" className="text-sm font-semibold text-gray-800 mb-1">Time (hh:mm:ss)</label>
+                <input
+                    type="text"
+                    id="time"
+                    name="time"
+                    value={formData.time}
+                    onChange={handleChange}
+                    required
+                    placeholder="Enter time..."
+                    className="input-field rounded-md border border-gray-300 py-2 px-3 text-gray-700 focus:outline-none focus:ring-none"
+                />
+              </div>
+              <div className="grid grid-cols-1 gap-2">
+                <label htmlFor="age" className="text-sm font-medium text-gray-700">Age</label>
+                <input
+                    type="number"
+                    id="age"
+                    name="age"
+                    value={formData.age}
+                    onChange={handleChange}
+                    required
+                    placeholder="Enter your age..."
+                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none input-field rounded-md border border-gray-300 py-2 px-3 text-gray-700 focus:outline-none focus:ring-none"
+                />
+              </div>
+              <div className="grid grid-cols-1 gap-2">
+                <label htmlFor="weight" className="text-sm font-medium text-gray-700">Weight (kg)</label>
+                <input
+                    type="number"
+                    id="weight"
+                    name="weight"
+                    value={formData.weight}
+                    onChange={handleChange}
+                    required
+                    placeholder="Enter your weight..."
+                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none input-field rounded-md border border-gray-300 py-2 px-3 text-gray-700 focus:outline-none focus:ring-none"
+                />
+              </div>
+              <div className="grid grid-cols-1 gap-2">
+                <label htmlFor="speed" className="text-sm font-medium text-gray-700">Speed (km/h)</label>
+                <input
+                    type="number"
+                    id="speed"
+                    name="speed"
+                    value={formData.speed}
+                    onChange={handleChange}
+                    required
+                    placeholder="Enter your speed..."
+                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none input-field rounded-md border border-gray-300 py-2 px-3 text-gray-700 focus:outline-none focus:ring-none"
+                />
+              </div>
+            </fieldset>
+            <button type="submit"
+                    className="w-full py-3 bg-yellow-700 hover:bg-yellow-800 text-white font-semibold rounded-md shadow-sm focus:outline-none focus:ring-none">
+              Calculate
+            </button>
+          </form>
+          {result !== null && (
+              <div className="mt-6 text-center">
+                <p className="text-lg font-semibold text-gray-900">Calories Burned: {result}</p>
+              <p className="text-sm text-gray-500">**Disclaimer:** This is an estimate and may not reflect your actual calorie burn.</p>
+            </div>
+          )}
         </div>
       </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   );
 }

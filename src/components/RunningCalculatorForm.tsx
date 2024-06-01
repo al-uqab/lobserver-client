@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, ChangeEvent, FormEvent } from 'react';
-import {Bebas_Neue} from "next/font/google";
-import axios from 'axios';
+import { Bebas_Neue } from "next/font/google";
+import { calculateCalories } from "@/utils/calculation";
 
 const bebas = Bebas_Neue({weight: "400", subsets: ["latin"] });
 
@@ -76,8 +76,8 @@ export default function RunningCalculatorForm() {
         }
 
         try {
-            const response = await axios.post(`${backendUrl}/runs`, formData);
-            setResult(response.data.caloriesBurned);
+            const calculatedCalories = calculateCalories(formData);
+            setResult(calculatedCalories);
         } catch (error) {
             console.error('Error calculating calories:', error);
             setResult('Error calculating calories');

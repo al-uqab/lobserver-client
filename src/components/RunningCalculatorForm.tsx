@@ -36,18 +36,15 @@ export default function RunningCalculatorForm() {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value, type } = e.target;
-        if (type === 'checkbox') {
-            const { checked } = e.target as HTMLInputElement;
-            setFormData((prevData) => ({
-                ...prevData,
-                [name]: checked,
-            }));
-        } else {
-            setFormData((prevData) => ({
-                ...prevData,
-                [name]: parseFloat(value),
-            }));
-        }
+        const updatedValue = type === 'checkbox' ? (e.target as HTMLInputElement).checked : parseFloat(value);
+
+        setFormData((prevData) => {
+            const updatedFormData = { ...prevData, [name]: updatedValue };
+            if ((name === 'distance' || name === 'time') && updatedFormData.time > 0) {
+                updatedFormData.speed = (updatedFormData.distance / updatedFormData.time) * 60; // convert time from minutes to hours
+            }
+            return updatedFormData;
+        });
     };
 
     const handleSubmit = async (e: FormEvent) => {
@@ -207,7 +204,7 @@ export default function RunningCalculatorForm() {
                     {result !== null && (
                         <div className="mt-6 text-center">
                             <p className="text-lg font-semibold text-neutral-50">Calories Burned: {result}</p>
-                            <p className="text-xs text-gray-500"><strong>Disclaimer:</strong> This is an estimate and
+                            <p className="text-xs text-teal-300"><strong>Disclaimer:</strong> This is an estimate and
                                 may not reflect your actual calorie burn.</p>
                         </div>
                     )}

@@ -5,7 +5,7 @@ coverImage: "/assets/blog/ultimate-running-guide/cover.webp"
 date: "2024-06-03T05:35:07.322Z"
 author:
   name: Mohamed Abdelkader
-  picture: "/assets/blog/authors/mohamed.jpeg"
+  picture: "/assets/blog/authors/mohamed.jpg"
 ogImage:
   url: "/assets/blog/ultimate-running-guide/cover.webp"
 ---

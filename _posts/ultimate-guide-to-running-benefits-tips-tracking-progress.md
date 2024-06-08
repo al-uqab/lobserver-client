@@ -1,13 +1,13 @@
 ---
 title: "The Ultimate Guide to Running: Benefits, Tips, and Tracking Your Progress"
 excerpt: "Running is more than just a physical activity; it's a journey towards better health, mental clarity, and personal achievement. This comprehensive guide covers everything you need to know about running, from the benefits to effective tips and how to track your progress."
-coverImage: "/assets/blog/ultimate-running-guide/cover.webp"
+coverImage: "/assets/blog/ultimate-guide-to-running-benefits-tips-tracking-progress/cover.webp"
 date: "2024-06-03T05:35:07.322Z"
 author:
   name: Mohamed Abdelkader
   picture: "/assets/blog/authors/mohamed.jpg"
 ogImage:
-  url: "/assets/blog/ultimate-running-guide/cover.webp"
+  url: "/assets/blog/ultimate-guide-to-running-benefits-tips-tracking-progress/cover.webp"
 ---
 
 Running is more than just a physical activity; it's a journey towards better health, mental clarity, and personal achievement. Whether you're a seasoned marathoner or a beginner lacing up your shoes for the first time, understanding the many facets of running can help you maximize your experience and reach your fitness goals. This comprehensive guide covers everything you need to know about running, from the benefits to effective tips and how to track your progress.

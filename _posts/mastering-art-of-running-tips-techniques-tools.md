@@ -1,13 +1,13 @@
 ---
 title: "Mastering the Art of Running: Tips, Techniques, and Tools"
 excerpt: "Running is not just a sport; it's a lifestyle that promotes health, fitness, and mental well-being. This article delves into the essentials of running, offering tips, techniques, and tools to help runners of all levels improve their performance and enjoy their runs."
-coverImage: "/assets/blog/mastering-running/cover.webp"
+coverImage: "/assets/blog/mastering-art-of-running-tips-techniques-tools/cover.webp"
 date: "2024-06-05T14:00:00.000Z"
 author:
   name: Mostafa Abdelkader
   picture: "/assets/blog/authors/mostafa.jpg"
 ogImage:
-  url: "/assets/blog/mastering-running/cover.webp"
+  url: "/assets/blog/mastering-art-of-running-tips-techniques-tools/cover.webp"
 ---
 
 Running is not just a sport; it's a lifestyle that promotes health, fitness, and mental well-being. Whether you're aiming to complete your first 5K or trying to set a personal record in a marathon, mastering the art of running requires a combination of the right techniques, effective training, and the best tools. This article delves into the essentials of running, offering tips, techniques, and tools to help runners of all levels improve their performance and enjoy their runs.

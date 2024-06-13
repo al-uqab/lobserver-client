@@ -91,14 +91,14 @@ export default function RunningCalculator() {
   };
 
   return (
-    <section className="bg-gradient-to-r from-teal-400 to-teal-600">
+    <section className="bg-white">
       <Container backgroundColor="teal-400">
-        <section className="flex-col md:flex-row flex items-center md:justify-between mb-16 md:mb-12">
-          <div className="flex items-center justify-center text-white">
+        <section className="flex-col gap-8 md:flex-row flex items-center md:justify-between mb-16 md:mb-12">
+          <div className="flex items-center justify-center text-slate-800">
             <div className="max-w-lg w-full rounded-lg overflow-hidden">
               <div className="py-8">
                 <h2
-                  className={`text-5xl font-bold tracking-tighter leading-tight text-left text-neutral-50 mb-4 ${ibmSerif.className}`}
+                  className={`text-5xl font-bold tracking-tighter leading-tight text-left text-green-950 mb-4 ${ibmSerif.className}`}
                 >
                   Calculate Your{" "}
                   <span className="underline underline-offset-auto decoration-wavy">
@@ -106,14 +106,6 @@ export default function RunningCalculator() {
                   </span>{" "}
                   Calories Burned
                 </h2>
-                <p className="text-xs text-left text-teal-50 mb-4">
-                  Use our running calculator to estimate the calories burned
-                  during your runs. Whether you&apos;re running outdoors or on a
-                  treadmill, input your details like distance, time, age,
-                  weight, and speed to get an accurate estimation of your
-                  calorie burn. This tool is perfect for runners of all levels
-                  who want to keep track of their fitness and health progress.
-                </p>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <fieldset className="grid grid-cols-1 gap-4">
                     <legend className="sr-only">Form Fields</legend>
@@ -123,7 +115,7 @@ export default function RunningCalculator() {
                         onClick={() =>
                           setFormData({ ...formData, runningType: "outdoor" })
                         }
-                        className={`px-4 py-2 text-sm font-medium rounded-md focus:outline-none ${formData.runningType === "outdoor" ? "bg-slate-800 text-neutral-50" : "text-teal-100 border border-teal-400"}`}
+                        className={`px-4 py-2 text-sm font-medium rounded-md focus:outline-none ${formData.runningType === "outdoor" ? "bg-slate-800 text-neutral-50" : "text-slate-800 border border-teal-400"}`}
                       >
                         Outdoor
                       </button>
@@ -132,7 +124,7 @@ export default function RunningCalculator() {
                         onClick={() =>
                           setFormData({ ...formData, runningType: "treadmill" })
                         }
-                        className={`px-4 py-2 text-sm font-medium rounded-md focus:outline-none ${formData.runningType === "treadmill" ? "bg-slate-800 text-neutral-50" : "text-teal-100 border border-teal-400"}`}
+                        className={`px-4 py-2 text-sm font-medium rounded-md focus:outline-none ${formData.runningType === "treadmill" ? "bg-slate-800 text-neutral-50" : "text-slate-800 border border-teal-400"}`}
                       >
                         Treadmill
                       </button>
@@ -140,7 +132,7 @@ export default function RunningCalculator() {
                     <div className="grid grid-cols-1 gap-2">
                       <label
                         htmlFor="distance"
-                        className="text-sm font-medium text-teal-100"
+                        className="text-sm font-medium text-slate-800"
                       >
                         Distance (km)
                       </label>
@@ -152,13 +144,13 @@ export default function RunningCalculator() {
                         onChange={handleChange}
                         required
                         placeholder="Enter distance..."
-                        className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none input-field rounded-md py-2 px-3 bg-teal-4 text-slate-800 focus:outline-none focus:ring-none"
+                        className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none input-field rounded-md py-2 px-3 bg-green-50 text-slate-800 focus:outline-none focus:ring-none"
                       />
                     </div>
                     <div className="grid grid-cols-1 gap-2">
                       <label
                         htmlFor="sex"
-                        className="text-sm font-medium text-teal-100"
+                        className="text-sm font-medium text-slate-800"
                       >
                         Sex
                       </label>
@@ -167,7 +159,7 @@ export default function RunningCalculator() {
                         name="sex"
                         value={formData.sex}
                         onChange={handleChange}
-                        className="input-field rounded-md py-2 px-3 text-slate-800 focus:outline-none focus:ring-none"
+                        className="input-field rounded-md py-2 px-3 bg-green-50 text-slate-800 focus:outline-none focus:ring-none"
                       >
                         <option value="male">Male</option>
                         <option value="female">Female</option>
@@ -176,7 +168,7 @@ export default function RunningCalculator() {
                     <div className="flex flex-col">
                       <label
                         htmlFor="time"
-                        className="text-sm font-semibold text-teal-100 mb-1"
+                        className="text-sm font-semibold text-slate-800 mb-1"
                       >
                         Time (minutes)
                       </label>
@@ -188,13 +180,13 @@ export default function RunningCalculator() {
                         onChange={handleChange}
                         required
                         placeholder="Enter time..."
-                        className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none input-field rounded-md py-2 px-3 text-slate-800 focus:outline-none focus:ring-none"
+                        className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none input-field rounded-md py-2 px-3 bg-green-50 text-slate-800 focus:outline-none focus:ring-none"
                       />
                     </div>
                     <div className="grid grid-cols-1 gap-2">
                       <label
                         htmlFor="age"
-                        className="text-sm font-medium text-teal-100"
+                        className="text-sm font-medium text-slate-800"
                       >
                         Age
                       </label>
@@ -206,13 +198,13 @@ export default function RunningCalculator() {
                         onChange={handleChange}
                         required
                         placeholder="Enter your age..."
-                        className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none input-field rounded-md py-2 px-3 text-slate-800 focus:outline-none focus:ring-none"
+                        className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none input-field rounded-md py-2 px-3 bg-green-50 text-slate-800 focus:outline-none focus:ring-none"
                       />
                     </div>
                     <div className="grid grid-cols-1 gap-2">
                       <label
                         htmlFor="weight"
-                        className="text-sm font-medium text-teal-100"
+                        className="text-sm font-medium text-slate-800"
                       >
                         Weight (kg)
                       </label>
@@ -224,13 +216,13 @@ export default function RunningCalculator() {
                         onChange={handleChange}
                         required
                         placeholder="Enter your weight..."
-                        className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none input-field rounded-md py-2 px-3 text-slate-800 focus:outline-none focus:ring-none"
+                        className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none input-field rounded-md py-2 px-3 bg-green-50 text-slate-800 focus:outline-none focus:ring-none"
                       />
                     </div>
                     <div className="grid grid-cols-1 gap-2">
                       <label
                         htmlFor="speed"
-                        className="text-sm font-medium text-teal-100"
+                        className="text-sm font-medium text-slate-800"
                       >
                         Speed (km/h)
                       </label>
@@ -242,7 +234,7 @@ export default function RunningCalculator() {
                         onChange={handleChange}
                         required
                         placeholder="Enter your speed..."
-                        className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none input-field rounded-md border-none py-2 px-3 text-slate-800 focus:outline-none focus:ring-none"
+                        className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none input-field rounded-md border-none py-2 px-3 bg-green-50 text-slate-800 focus:outline-none focus:ring-none"
                       />
                     </div>
                   </fieldset>
@@ -266,6 +258,16 @@ export default function RunningCalculator() {
                 )}
               </div>
             </div>
+          </div>
+          <div className="md:w-1/3">
+            <p className="text-s text-left text-teal-950 mb-4">
+              Use our running calculator to estimate the calories burned during
+              your runs. Whether you&apos;re running outdoors or on a treadmill,
+              input your details like distance, time, age, weight, and speed to
+              get an accurate estimation of your calorie burn. This tool is
+              perfect for runners of all levels who want to keep track of their
+              fitness and health progress.
+            </p>
           </div>
         </section>
       </Container>

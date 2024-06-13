@@ -6,7 +6,7 @@ type Props = {
 const Container = ({ children, backgroundColor }: Props) => {
   return (
     <div
-      className={`container mx-auto px-5 ${backgroundColor ? `bg-${backgroundColor}` : ""}`}
+      className={`container ${backgroundColor ? `bg-${backgroundColor}` : ""}`}
     >
       {children}
     </div>

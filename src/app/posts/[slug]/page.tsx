@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "@/lib/api";
-import { CMS_NAME } from "@/lib/constants";
+import { BASE_URL, CMS_NAME, CMS_SEPARATOR } from "@/lib/constants";
 import markdownToHtml from "@/lib/markdownToHtml";
 
 import Container from "@/app/_components/container";
@@ -47,14 +47,17 @@ export function generateMetadata({ params }: Params): Metadata {
     return notFound();
   }
 
-  const title = `${post.title} - ${CMS_NAME}`;
+  const title = `${post.title} ${CMS_SEPARATOR} ${CMS_NAME}`;
 
   return {
+    metadataBase: new URL(BASE_URL),
     title,
+    description: post.excerpt,
     openGraph: {
       title,
       images: [post.ogImage.url],
     },
+    authors: [{ name: post.author.name, url: BASE_URL }],
   };
 }
 

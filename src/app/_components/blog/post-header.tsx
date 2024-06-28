@@ -8,16 +8,30 @@ type Props = {
   title: string;
   coverImage: string;
   date: string;
+  lastModified?: string;
   author: Author;
 };
 
-export function PostHeader({ title, coverImage, date, author }: Props) {
+export function PostHeader({
+  title,
+  coverImage,
+  date,
+  lastModified,
+  author,
+}: Props) {
   return (
     <>
       <PostTitle>{title}</PostTitle>
       <div className="hidden md:flex items-center justify-between md:mb-8">
         <Avatar name={author.name} picture={author.picture} />
-        <DateFormatter dateString={date} />
+        <div className="flex flex-col items-end">
+          <DateFormatter dateString={date} />
+          {lastModified && (
+            <span className="opacity-50">
+              Last Updated: <DateFormatter dateString={lastModified} />
+            </span>
+          )}
+        </div>
       </div>
       <div className="mb-8 md:mb-16 sm:mx-0">
         <CoverImage
@@ -32,6 +46,11 @@ export function PostHeader({ title, coverImage, date, author }: Props) {
         <div className="flex flex-col gap-1 items-end md:hidden mb-6">
           <Avatar name={author.name} picture={author.picture} />
           <DateFormatter dateString={date} />
+          {lastModified && (
+            <div className="flex flex-col gap-1 items-end md:hidden mb-6">
+              Last Updated: <DateFormatter dateString={lastModified} />
+            </div>
+          )}
         </div>
       </div>
     </>

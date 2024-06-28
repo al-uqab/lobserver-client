@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${ibmSans.className} bg-emerald-50`}>
+      <body className={`${ibmSans.className} bg-emerald-50 antialiased`}>
         <Header />
         {children}
       </body>

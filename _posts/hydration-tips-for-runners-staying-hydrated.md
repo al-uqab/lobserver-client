@@ -1,5 +1,5 @@
 ---
-title: "Conquer Your Runs: Essential Hydration Tips for Peak Performance"
+title: "Essential Hydration Tips for Peak Performance"
 excerpt: "Running is invigorating, but staying hydrated is key to crushing your goals. Discover how much to drink, when to drink it, and the best fluids to keep you performing at your best."
 coverImage: "/assets/blog/hydration-tips-for-runners-staying-hydrated/cover.webp"
 date: "2024-06-12T08:00:00.000Z"

@@ -18,6 +18,12 @@ const config: Config = {
       },
     },
     extend: {
+      colors: {
+        selection: {
+          background: "#6ee7b7",
+          text: "#000000",
+        },
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -28,6 +34,15 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        "::selection": {
+          "background-color": "var(--tw-selection-background)",
+          color: "var(--tw-selection-text)",
+        },
+      });
+    },
+  ],
 };
 export default config;

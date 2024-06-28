@@ -7,3 +7,8 @@
     text-wrap: balance;
   }
 }
+
+::selection {
+  --tw-selection-background: theme('colors.selection.background');
+  --tw-selection-text: theme('colors.selection.text');
+}

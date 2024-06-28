@@ -25,7 +25,7 @@ export default async function Post({ params }: Params) {
             title={post.title}
             coverImage={post.coverImage}
             date={post.date}
-            lastModified={post.lastModified ? post.lastModified : null}
+            lastModified={post.lastModified ? post.lastModified : undefined}
             author={post.author}
           />
           <PostBody content={content} />

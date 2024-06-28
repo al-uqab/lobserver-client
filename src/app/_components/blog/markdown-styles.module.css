@@ -62,7 +62,7 @@
 }
 
 .markdown a {
-  @apply text-blue-600 hover:underline;
+  @apply font-bold underline decoration-emerald-500 decoration-2 hover:bg-emerald-200;
 }
 
 .markdown blockquote {

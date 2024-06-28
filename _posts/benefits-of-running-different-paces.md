@@ -3,7 +3,7 @@ title: "The Benefits of Running at Different Paces: Easy, Tempo, and Speed Worko
 excerpt: "Explore the benefits of varying running paces—easy, tempo, and speed workouts—to enhance fitness and performance in your training routine."
 coverImage: "/assets/blog/benefits-of-running-different-paces/cover.webp"
 date: "2024-06-13T16:00:00.000Z"
-lastModified: "2024-06-13T19:00:00.000+03:00"
+lastModified: "2024-06-28T03:28:00.000+03:00"
 author:
   name: Mohamed Abdelkader
   picture: "/assets/blog/authors/mohamed.jpg"

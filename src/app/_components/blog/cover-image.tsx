@@ -1,7 +1,7 @@
-import cn from "classnames";
+import { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FC } from "react";
+import cn from "classnames";
 
 type Props = {
   title: string;
@@ -30,8 +30,8 @@ const CoverImage: FC<Props> = ({
   }
 
   const dynamicHeightClass = thumb
-    ? `min-h-[250px] max-h-[250px]`
-    : `min-h-[600px] max-h-[600px]`;
+    ? `md:min-h-[250px] md:max-h-[250px]`
+    : `md:min-h-[600px] md:max-h-[600px]`;
 
   const imageClass = cn("rounded-3xl w-full object-cover", dynamicHeightClass, {
     "hover:shadow-lg transition-shadow duration-200": slug,
@@ -44,6 +44,7 @@ const CoverImage: FC<Props> = ({
       className={imageClass}
       width={width}
       height={height}
+      loading="lazy"
     />
   );
 

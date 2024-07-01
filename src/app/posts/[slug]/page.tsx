@@ -18,7 +18,7 @@ export default async function Post({ params }: Params) {
   const content = await markdownToHtml(post.content || "");
 
   return (
-    <main>
+    <main className="py-8">
       <Container>
         <article className="mb-32">
           <PostHeader

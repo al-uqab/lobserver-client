@@ -21,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${ibmSans.className} bg-emerald-50 antialiased`}>
-        <Header />
+        <header className="bg-emerald-800">
+          <Header />
+        </header>
         {children}
       </body>
       <GoogleAnalytics gaId="G-K0WMVDDVE0" />

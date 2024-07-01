@@ -34,9 +34,7 @@ export default function RunningCalculator() {
   const [result, setResult] = useState<number | string | null>(null);
   const [errors, setErrors] = useState<string[]>([]);
 
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-  ) => {
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { name, value, type } = e.target;
     const updatedValue =
       type === "checkbox"

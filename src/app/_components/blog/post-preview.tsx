@@ -32,7 +32,7 @@ export function PostPreview({
           height={250}
         />
       </div>
-      <h4 className="text-2xl mb-3 leading-snug font-bold">
+      <h4 className="text-2xl mb-3 leading-snug font-bold text-emerald-950">
         <Link href={`/posts/${slug}`} className="hover:underline">
           {title}
         </Link>

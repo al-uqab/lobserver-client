@@ -45,5 +45,10 @@ const config: Config = {
       });
     }),
   ],
+  variants: {
+    extend: {
+      translate: ["group-hover", "hover"],
+    },
+  },
 };
 export default config;

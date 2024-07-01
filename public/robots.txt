@@ -6,4 +6,4 @@ Allow: /
 Allow: /sitemap.xml
 Allow: /posts/*
 
-Sitemap: /sitemap.xml
+Sitemap: https://lobserver.com/sitemap.xml

@@ -4,8 +4,8 @@ excerpt: "Microsoft erlebt einen globalen Ausfall, der Fluggesellschaften, Banke
 coverImage: "/assets/blog/global-outage-microsoft-impacts-airlines-banks/cover.jpeg"
 date: "2024-07-19T12:02:00.000Z"
 author:
-name: Mohamed Abdelkader
-picture: "/assets/blog/authors/mohamed.jpg"
+    name: Mohamed Abdelkader
+    picture: "/assets/blog/authors/mohamed.jpg"
 ogImage:
 url: "/assets/blog/global-outage-microsoft-impacts-airlines-banks/cover.jpeg"
 ---

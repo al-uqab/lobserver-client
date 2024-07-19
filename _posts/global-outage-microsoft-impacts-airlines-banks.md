@@ -1,13 +1,13 @@
 ---
 title: "Microsoft kündigt weltweiten Ausfall an, der zahlreiche Dienste betrifft"
 excerpt: "Microsoft erlebt einen globalen Ausfall, der Fluggesellschaften, Banken und mehr betrifft. Bedeutende Störungen weltweit gemeldet. Untersuchung läuft."
-coverImage: "/assets/blog/global-outage-microsoft-impacts-airlines-banks/cover.jpeg"
+coverImage: "/assets/blog/globaler-ausfall-microsoft-beeinflusst-fluggesellschaften-banken/cover.jpeg"
 date: "2024-07-19T12:02:00.000Z"
 author:
     name: Mohamed Abdelkader
     picture: "/assets/blog/authors/mohamed.jpg"
 ogImage:
-url: "/assets/blog/global-outage-microsoft-impacts-airlines-banks/cover.jpeg"
+    url: "/assets/blog/globaler-ausfall-microsoft-beeinflusst-fluggesellschaften-banken/cover.jpeg"
 ---
 
 Microsoft hat einen globalen Systemausfall gemeldet, der Benutzer weltweit daran hindert, auf seine Cloud-Computing-Plattformen zuzugreifen. Dies hat die Abläufe zahlreicher Unternehmen gestört, darunter Banken, Fluggesellschaften, Telekommunikationsunternehmen, Rundfunkanstalten und Supermärkte.

@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans } from "next/font/google";
+import { IBM_Plex_Sans_Arabic } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 import Header from "@/app/_components/header";
 import "./globals.css";
 
-const ibmSans = IBM_Plex_Sans({ weight: ["400", "700"], subsets: ["latin"] });
+const ibmSans = IBM_Plex_Sans_Arabic({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "LObserver - Running Calories Burned Calculator",

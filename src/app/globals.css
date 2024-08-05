@@ -12,7 +12,3 @@
   --tw-selection-background: theme('colors.selection.background');
   --tw-selection-text: theme('colors.selection.text');
 }
-
-* {
-  direction: rtl;
-}
